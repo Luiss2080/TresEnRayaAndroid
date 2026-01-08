@@ -1,71 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/score_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="20dp">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/player_x_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             android:text="@string/player_x_score"
-            android:textSize="20sp"
-            android:layout_marginEnd="20dp"/>
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
         <TextView
             android:id="@+id/player_o_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:text="@string/player_o_score"
-            android:textSize="20sp"
-            android:layout_marginStart="20dp"/>
-
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/player_x_turn"
-        android:textSize="24sp"
-        android:layout_marginBottom="20dp"/>
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/board"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <GridLayout
         android:id="@+id/board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="3"
-        android:rowCount="3">
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button android:id="@+id/button00" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button01" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button02" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button10" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button11" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button12" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button20" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button21" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
-        <Button android:id="@+id/button22" android:layout_width="100dp" android:layout_height="100dp" android:textSize="48sp" />
+        <!-- Fila 1 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button00"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            tools:text="X"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button01"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            tools:text="O"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button02"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
+
+        <!-- Fila 2 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button10"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button11"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            tools:text="X"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button12"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
+            
+        <!-- Fila 3 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button20"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button21"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            tools:text="O"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button22"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="4dp"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:cornerRadius="16dp"
+            tools:text="X"/>
     </GridLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/reset"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/board" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
