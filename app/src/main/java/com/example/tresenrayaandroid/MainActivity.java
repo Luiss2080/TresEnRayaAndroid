@@ -10,17 +10,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TicTacToeGame game;
+    private Juego juego;
     private Button[][] buttons = new Button[3][3];
     private TextView status;
+    private TextView playerXScoreTV;
+    private TextView playerOScoreTV;
+    private int playerXScore = 0;
+    private int playerOScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        game = new TicTacToeGame();
+        juego = new Juego();
         status = findViewById(R.id.status);
+        playerXScoreTV = findViewById(R.id.player_x_score);
+        playerOScoreTV = findViewById(R.id.player_o_score);
+
 
         GridLayout board = findViewById(R.id.board);
         for (int i = 0; i < 3; i++) {
@@ -36,35 +43,47 @@ public class MainActivity extends AppCompatActivity {
 
         Button resetButton = findViewById(R.id.reset_button);
         resetButton.setOnClickListener(v -> resetGame());
+        updateScore();
     }
 
     private void onCellClicked(int row, int col) {
-        if (game.isGameOver() || !game.makeMove(row, col)) {
+        if (juego.isFinalizado() || !juego.realizarMovimiento(row, col)) {
             return;
         }
 
-        buttons[row][col].setText(game.getCurrentPlayer());
+        buttons[row][col].setText(juego.getJugadorActual().getFicha().toString());
 
-        if (game.checkForWin()) {
-            status.setText("Player " + game.getCurrentPlayer() + " wins!");
+        if (juego.hayGanador()) {
+            if (juego.getJugadorActual().getFicha() == Ficha.X) {
+                playerXScore++;
+                status.setText(R.string.player_x_wins);
+            } else {
+                playerOScore++;
+                status.setText(R.string.player_o_wins);
+            }
+            updateScore();
             disableBoard();
-        } else if (game.isBoardFull()) {
-            status.setText("It's a draw!");
+        } else if (juego.estaLleno()) {
+            status.setText(R.string.draw);
         } else {
-            game.switchPlayer();
-            status.setText("Player " + game.getCurrentPlayer() + "'s turn");
+            juego.cambiarTurno();
+            if (juego.getJugadorActual().getFicha() == Ficha.X) {
+                status.setText(R.string.player_x_turn);
+            } else {
+                status.setText(R.string.player_o_turn);
+            }
         }
     }
 
     private void resetGame() {
-        game.resetGame();
+        juego.reiniciar();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setText("");
                 buttons[i][j].setEnabled(true);
             }
         }
-        status.setText("Player X's turn");
+        status.setText(R.string.player_x_turn);
     }
 
     private void disableBoard() {
@@ -73,5 +92,10 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i][j].setEnabled(false);
             }
         }
+    }
+
+    private void updateScore() {
+        playerXScoreTV.setText(getString(R.string.player_x_score, playerXScore));
+        playerOScoreTV.setText(getString(R.string.player_o_score, playerOScore));
     }
 }
