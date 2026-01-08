@@ -9,11 +9,36 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/player_x_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_x_score"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/player_o_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_o_score"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"/>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player X's turn"
+        android:text="@string/player_x_turn"
         android:textSize="24sp"
         android:layout_marginBottom="20dp"/>
 
@@ -40,7 +65,7 @@
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="@string/reset"
         android:layout_marginTop="20dp"/>
 
 </LinearLayout>

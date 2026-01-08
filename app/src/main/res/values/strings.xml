@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TresEnRayaAndroid</string>
+    <string name="player_x_turn">Turno del Jugador X</string>
+    <string name="player_o_turn">Turno del Jugador O</string>
+    <string name="player_x_wins">¡El Jugador X ha ganado!</string>
+    <string name="player_o_wins">¡El Jugador O ha ganado!</string>
+    <string name="draw">¡Es un empate!</string>
+    <string name="reset">Reiniciar</string>
+    <string name="player_x_score">Jugador X: %d</string>
+    <string name="player_o_score">Jugador O: %d</string>
 </resources>
