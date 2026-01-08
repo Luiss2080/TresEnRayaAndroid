@@ -8,11 +8,11 @@ public class Tablero {
         fichas = new Ficha[3][3];
     }
 
-    public Ficha getFicha(int fila, int columna) {
+    public Ficha obtenerFicha(int fila, int columna) {
         return fichas[fila][columna];
     }
 
-    public Ficha[][] getFichas() {
+    public Ficha[][] obtenerFichas() {
         return fichas;
     }
 

@@ -3,11 +3,11 @@ package com.example.tresenrayaandroid;
 public class Reglas {
 
     public boolean esMovimientoValido(Tablero tablero, int fila, int columna) {
-        return tablero.getFicha(fila, columna) == null;
+        return tablero.obtenerFicha(fila, columna) == null;
     }
 
     public boolean es3EnRaya(Tablero tablero) {
-        Ficha[][] fichas = tablero.getFichas();
+        Ficha[][] fichas = tablero.obtenerFichas();
 
         // Comprobar filas
         for (int i = 0; i < 3; i++) {

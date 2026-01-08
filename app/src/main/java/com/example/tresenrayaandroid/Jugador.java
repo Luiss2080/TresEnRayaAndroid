@@ -7,7 +7,7 @@ public class Jugador {
         this.ficha = ficha;
     }
 
-    public Ficha getFicha() {
+    public Ficha obtenerFicha() {
         return ficha;
     }
 }
