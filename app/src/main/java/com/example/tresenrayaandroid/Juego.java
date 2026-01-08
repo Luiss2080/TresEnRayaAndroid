@@ -6,6 +6,7 @@ public class Juego {
     private Jugador jugadorX;
     private Jugador jugadorO;
     private Jugador jugadorActual;
+    private Reglas reglas;
     private boolean finalizado;
 
     public Juego() {
@@ -13,6 +14,7 @@ public class Juego {
         jugadorX = new Jugador(Ficha.X);
         jugadorO = new Jugador(Ficha.O);
         jugadorActual = jugadorX;
+        reglas = new Reglas();
         finalizado = false;
     }
 
@@ -25,8 +27,9 @@ public class Juego {
     }
 
     public boolean realizarMovimiento(int fila, int columna) {
-        if (tablero.colocarFicha(fila, columna, jugadorActual.getFicha())) {
-            if (tablero.hayGanador()) {
+        if (reglas.esMovimientoValido(tablero, fila, columna)) {
+            tablero.colocarFicha(fila, columna, jugadorActual.getFicha());
+            if (reglas.es3EnRaya(tablero)) {
                 finalizado = true;
             } else if (tablero.estaLleno()) {
                 finalizado = true;
@@ -37,7 +40,7 @@ public class Juego {
     }
 
     public boolean hayGanador() {
-        return tablero.hayGanador();
+        return reglas.es3EnRaya(tablero);
     }
 
     public boolean estaLleno() {
