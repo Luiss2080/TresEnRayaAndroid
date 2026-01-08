@@ -18,17 +18,17 @@ public class Juego {
         finalizado = false;
     }
 
-    public boolean isFinalizado() {
+    public boolean estaFinalizado() {
         return finalizado;
     }
 
-    public Jugador getJugadorActual() {
+    public Jugador obtenerJugadorActual() {
         return jugadorActual;
     }
 
     public boolean realizarMovimiento(int fila, int columna) {
         if (reglas.esMovimientoValido(tablero, fila, columna)) {
-            tablero.colocarFicha(fila, columna, jugadorActual.getFicha());
+            tablero.colocarFicha(fila, columna, jugadorActual.obtenerFicha());
             if (reglas.es3EnRaya(tablero)) {
                 finalizado = true;
             } else if (tablero.estaLleno()) {

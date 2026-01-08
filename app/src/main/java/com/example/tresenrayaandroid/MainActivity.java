@@ -1,7 +1,6 @@
 package com.example.tresenrayaandroid;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -11,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private Juego juego;
-    private Button[][] buttons = new Button[3][3];
-    private TextView status;
-    private TextView playerXScoreTV;
-    private TextView playerOScoreTV;
-    private int playerXScore = 0;
-    private int playerOScore = 0;
+    private final Button[][] botones = new Button[3][3];
+    private TextView estado;
+    private TextView puntuacionJugadorXTV;
+    private TextView puntuacionJugadorOTV;
+    private int puntuacionJugadorX = 0;
+    private int puntuacionJugadorO = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,78 +23,77 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         juego = new Juego();
-        status = findViewById(R.id.status);
-        playerXScoreTV = findViewById(R.id.player_x_score);
-        playerOScoreTV = findViewById(R.id.player_o_score);
+        estado = findViewById(R.id.status);
+        puntuacionJugadorXTV = findViewById(R.id.player_x_score);
+        puntuacionJugadorOTV = findViewById(R.id.player_o_score);
 
-
-        GridLayout board = findViewById(R.id.board);
+        GridLayout tablero = findViewById(R.id.board);
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                String buttonID = "button" + i + j;
-                int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
-                buttons[i][j] = findViewById(resID);
-                final int row = i;
-                final int col = j;
-                buttons[i][j].setOnClickListener(v -> onCellClicked(row, col));
+                String idBoton = "button" + i + j;
+                int idRecurso = getResources().getIdentifier(idBoton, "id", getPackageName());
+                botones[i][j] = findViewById(idRecurso);
+                final int fila = i;
+                final int columna = j;
+                botones[i][j].setOnClickListener(v -> alPulsarCelda(fila, columna));
             }
         }
 
-        Button resetButton = findViewById(R.id.reset_button);
-        resetButton.setOnClickListener(v -> resetGame());
-        updateScore();
+        Button botonReiniciar = findViewById(R.id.reset_button);
+        botonReiniciar.setOnClickListener(v -> reiniciarPartida());
+        actualizarPuntuacion();
     }
 
-    private void onCellClicked(int row, int col) {
-        if (juego.isFinalizado() || !juego.realizarMovimiento(row, col)) {
+    private void alPulsarCelda(int fila, int columna) {
+        if (juego.estaFinalizado() || !juego.realizarMovimiento(fila, columna)) {
             return;
         }
 
-        buttons[row][col].setText(juego.getJugadorActual().getFicha().toString());
+        botones[fila][columna].setText(juego.obtenerJugadorActual().obtenerFicha().toString());
 
         if (juego.hayGanador()) {
-            if (juego.getJugadorActual().getFicha() == Ficha.X) {
-                playerXScore++;
-                status.setText(R.string.player_x_wins);
+            if (juego.obtenerJugadorActual().obtenerFicha() == Ficha.X) {
+                puntuacionJugadorX++;
+                estado.setText(R.string.player_x_wins);
             } else {
-                playerOScore++;
-                status.setText(R.string.player_o_wins);
+                puntuacionJugadorO++;
+                estado.setText(R.string.player_o_wins);
             }
-            updateScore();
-            disableBoard();
+            actualizarPuntuacion();
+            desactivarTablero();
         } else if (juego.estaLleno()) {
-            status.setText(R.string.draw);
+            estado.setText(R.string.draw);
         } else {
             juego.cambiarTurno();
-            if (juego.getJugadorActual().getFicha() == Ficha.X) {
-                status.setText(R.string.player_x_turn);
+            if (juego.obtenerJugadorActual().obtenerFicha() == Ficha.X) {
+                estado.setText(R.string.player_x_turn);
             } else {
-                status.setText(R.string.player_o_turn);
+                estado.setText(R.string.player_o_turn);
             }
         }
     }
 
-    private void resetGame() {
+    private void reiniciarPartida() {
         juego.reiniciar();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                buttons[i][j].setText("");
-                buttons[i][j].setEnabled(true);
+                botones[i][j].setText("");
+                botones[i][j].setEnabled(true);
             }
         }
-        status.setText(R.string.player_x_turn);
+        estado.setText(R.string.player_x_turn);
     }
 
-    private void disableBoard() {
+    private void desactivarTablero() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                buttons[i][j].setEnabled(false);
+                botones[i][j].setEnabled(false);
             }
         }
     }
 
-    private void updateScore() {
-        playerXScoreTV.setText(getString(R.string.player_x_score, playerXScore));
-        playerOScoreTV.setText(getString(R.string.player_o_score, playerOScore));
+    private void actualizarPuntuacion() {
+        puntuacionJugadorXTV.setText(getString(R.string.player_x_score, puntuacionJugadorX));
+        puntuacionJugadorOTV.setText(getString(R.string.player_o_score, puntuacionJugadorO));
     }
 }
