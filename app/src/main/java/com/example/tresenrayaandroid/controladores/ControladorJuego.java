@@ -1,4 +1,4 @@
-package com.example.tresenrayaandroid;
+package com.example.tresenrayaandroid.controladores;
 
 /**
  * Clase Controlador que gestiona la comunicación entre la Vista (MainActivity)
