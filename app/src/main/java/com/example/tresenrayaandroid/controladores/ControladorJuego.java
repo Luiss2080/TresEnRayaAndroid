@@ -1,5 +1,8 @@
 package com.example.tresenrayaandroid.controladores;
 
+import com.example.tresenrayaandroid.modelos.Ficha;
+import com.example.tresenrayaandroid.modelos.Juego;
+
 /**
  * Clase Controlador que gestiona la comunicación entre la Vista (MainActivity)
  * y el Modelo (Juego). Sigue el patrón de diseño MVC.
