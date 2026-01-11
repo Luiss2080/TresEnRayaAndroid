@@ -1,9 +1,12 @@
 package com.example.tresenrayaandroid.modelos;
 
 /**
- * Enumerado que representa las posibles fichas del juego.
+ * ENUMERADO FICHA (MODELO)
+ * 
+ * Define los tipos de fichas que pueden existir en el juego.
+ * Representa los símbolos básicos del Tres en Raya.
  */
 public enum Ficha {
-    X,
-    O
+    X, // Representa al primer jugador
+    O  // Representa al segundo jugador
 }
