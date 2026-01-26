@@ -5,168 +5,310 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@drawable/gradient_background"
+    android:padding="20dp"
     tools:context=".vistas.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/score_container"
+    <!-- Header con título del juego -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/header_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/player_x_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="@string/player_x_score"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-
-        <TextView
-            android:id="@+id/player_o_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="@string/player_o_score"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/player_x_turn"
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/board"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <GridLayout
-        android:id="@+id/board"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
+        app:strokeColor="@color/md_theme_light_outline"
+        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Fila 1 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button00"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            tools:text="X"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button01"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            tools:text="O"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎮 TRES EN RAYA 🎮"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginBottom="8dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button02"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Demuestra tu estrategia!"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="?attr/colorOnSurface"
+                android:alpha="0.8" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-        <!-- Fila 2 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button10"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp" />
+    <!-- Tablero de puntuaciones con animaciones -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/scoreboard_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_card">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button11"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            tools:text="X"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button12"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp" />
-            
-        <!-- Fila 3 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button20"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp" />
+            <!-- Jugador X -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/player_x_background"
+                android:padding="16dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button21"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            tools:text="O"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="❌"
+                    android:textSize="32sp"
+                    android:layout_marginBottom="4dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button22"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_margin="4dp"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            app:cornerRadius="16dp"
-            tools:text="X"/>
-    </GridLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JUGADOR X"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/game_player_x" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/reset_button"
+                <TextView
+                    android:id="@+id/player_x_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/player_x_score"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textStyle="bold"
+                    android:textColor="@color/game_player_x"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- Separador VS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="VS"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary"
+                android:background="@drawable/vs_background"
+                android:padding="12dp" />
+
+            <!-- Jugador O -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/player_o_background"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭕"
+                    android:textSize="32sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JUGADOR O"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/game_player_o" />
+
+                <TextView
+                    android:id="@+id/player_o_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/player_o_score"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                    android:textStyle="bold"
+                    android:textColor="@color/game_player_o"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Indicador de turno con animación -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/status_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreboard_card">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎯"
+                android:textSize="24sp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_x_turn"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textStyle="bold"
+                android:textColor="?attr/colorPrimary" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Tablero de juego mejorado -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/board_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/reset"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="16dp"
+        app:strokeColor="@color/md_theme_light_outline"
+        app:strokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@id/controls_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/board" />
+        app:layout_constraintTop_toBottomOf="@id/status_card">
+
+        <GridLayout
+            android:id="@+id/board"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="3"
+            android:background="@drawable/board_background"
+            android:padding="20dp">
+
+            <!-- Fila 1 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button00"
+                style="@style/ModernGameButton"
+                tools:text="X"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button01"
+                style="@style/ModernGameButton"
+                tools:text="O"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button02"
+                style="@style/ModernGameButton" />
+
+            <!-- Fila 2 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button10"
+                style="@style/ModernGameButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button11"
+                style="@style/ModernGameButton"
+                tools:text="X"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button12"
+                style="@style/ModernGameButton" />
+
+            <!-- Fila 3 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button20"
+                style="@style/ModernGameButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button21"
+                style="@style/ModernGameButton"
+                tools:text="O"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button22"
+                style="@style/ModernGameButton"
+                tools:text="X"/>
+        </GridLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Panel de controles -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/controls_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reset_button"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="🔄 REINICIAR"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_menu_rotate"
+                app:iconGravity="textStart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/new_game_button"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="🎮 NUEVO JUEGO"
+                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:icon="@android:drawable/ic_media_play"
+                app:iconGravity="textStart" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

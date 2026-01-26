@@ -3,6 +3,7 @@ package com.example.tresenrayaandroid.vistas;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.tresenrayaandroid.R;
 import com.example.tresenrayaandroid.controladores.ControladorPartida;
@@ -73,7 +74,15 @@ public class MainActivity extends AppCompatActivity {
         String fichaActual = controladorTablero.obtenerSimboloActual();
 
         if (controladorTablero.realizarMovimiento(fila, columna)) {
-            matrizBotones[fila][columna].setText(fichaActual);
+            MaterialButton boton = matrizBotones[fila][columna];
+            boton.setText(fichaActual);
+
+            // Aplicar color específico según el jugador
+            if (fichaActual.equals("X")) {
+                boton.setTextColor(ContextCompat.getColor(this, R.color.game_player_x));
+            } else {
+                boton.setTextColor(ContextCompat.getColor(this, R.color.game_player_o));
+            }
 
             if (controladorPartida.verificarGanador()) {
                 String mensaje = fichaActual.equals("X") ? 
@@ -128,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 if (matrizBotones[i][j] != null) {
                     matrizBotones[i][j].setText("");
                     matrizBotones[i][j].setEnabled(true);
+                    // Restaurar color de texto por defecto del tema
+                    matrizBotones[i][j].setTextColor(ContextCompat.getColor(this, R.color.md_theme_light_onSurface));
                 }
             }
         }
