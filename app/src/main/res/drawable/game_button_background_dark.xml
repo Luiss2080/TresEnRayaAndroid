@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado presionado -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="45"
+                android:startColor="@color/md_theme_dark_primaryContainer"
+                android:endColor="@color/md_theme_dark_primary" />
+            <corners android:radius="20dp"/>
+            <stroke
+                android:width="3dp"
+                android:color="@color/md_theme_dark_primary"/>
+        </shape>
+    </item>
+
+    <!-- Estado deshabilitado -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/md_theme_dark_surfaceVariant"/>
+            <corners android:radius="20dp"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/md_theme_dark_outline"/>
+        </shape>
+    </item>
+
+    <!-- Estado normal -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="@color/md_theme_dark_surface"
+                android:endColor="@color/md_theme_dark_surfaceVariant" />
+            <corners android:radius="20dp"/>
+            <stroke
+                android:width="2dp"
+                android:color="@color/md_theme_dark_outline"/>
+        </shape>
+    </item>
+</selector>
