@@ -38,9 +38,16 @@ public class MainActivity extends AppCompatActivity {
         inicializarComponentes();
         configurarTablero();
 
+        // Configurar botón reiniciar
         MaterialButton botonReiniciar = findViewById(R.id.reset_button);
         if (botonReiniciar != null) {
             botonReiniciar.setOnClickListener(v -> reiniciarJuego());
+        }
+
+        // Configurar botón nuevo juego
+        MaterialButton botonNuevoJuego = findViewById(R.id.new_game_button);
+        if (botonNuevoJuego != null) {
+            botonNuevoJuego.setOnClickListener(v -> nuevoJuego());
         }
 
         actualizarMarcadores();
@@ -137,11 +144,35 @@ public class MainActivity extends AppCompatActivity {
                 if (matrizBotones[i][j] != null) {
                     matrizBotones[i][j].setText("");
                     matrizBotones[i][j].setEnabled(true);
-                    // Restaurar color de texto por defecto del tema
-                    matrizBotones[i][j].setTextColor(ContextCompat.getColor(this, R.color.md_theme_light_onSurface));
+                    // Restaurar color de texto por defecto del tema usando TypedValue
+                    android.util.TypedValue typedValue = new android.util.TypedValue();
+                    getTheme().resolveAttribute(com.google.android.material.R.attr.colorOnSurface, typedValue, true);
+                    matrizBotones[i][j].setTextColor(typedValue.data);
                 }
             }
         }
+        actualizarEstadoTurno();
+    }
+
+    private void nuevoJuego() {
+        // Reinicia el juego creando una nueva instancia del modelo y controladores
+        Juego juegoModelo = new Juego();
+        controladorPartida = new ControladorPartida(juegoModelo);
+        controladorTablero = new ControladorTablero(juegoModelo);
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matrizBotones[i][j] != null) {
+                    matrizBotones[i][j].setText("");
+                    matrizBotones[i][j].setEnabled(true);
+                    // Restaurar color de texto por defecto del tema usando TypedValue
+                    android.util.TypedValue typedValue = new android.util.TypedValue();
+                    getTheme().resolveAttribute(com.google.android.material.R.attr.colorOnSurface, typedValue, true);
+                    matrizBotones[i][j].setTextColor(typedValue.data);
+                }
+            }
+        }
+        actualizarMarcadores();
         actualizarEstadoTurno();
     }
 }
