@@ -289,7 +289,7 @@
                 android:text="REINICIAR"
                 android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
                 android:textStyle="bold"
-                app:cornerRadius="16dp"
+                app:cornerRadius="8dp"
                 app:icon="@android:drawable/ic_menu_rotate"
                 app:iconGravity="textStart" />
 
@@ -303,7 +303,7 @@
                 android:text="NUEVO JUEGO"
                 android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
                 android:textStyle="bold"
-                app:cornerRadius="16dp"
+                app:cornerRadius="8dp"
                 app:icon="@android:drawable/ic_media_play"
                 app:iconGravity="textStart" />
         </LinearLayout>
