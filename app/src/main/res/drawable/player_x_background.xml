@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-        android:type="radial"
-        android:gradientRadius="50dp"
-        android:startColor="#FFE5E5"
-        android:endColor="#FFF0F0" />
+    <solid android:color="?attr/colorSurfaceVariant"/>
     <corners android:radius="12dp"/>
     <stroke
-        android:width="1dp"
-        android:color="@color/game_player_x"
-        android:dashWidth="5dp"
-        android:dashGap="3dp"/>
+        android:width="2dp"
+        android:color="@color/game_player_x"/>
 </shape>
 
