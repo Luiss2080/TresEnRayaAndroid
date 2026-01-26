@@ -37,27 +37,27 @@
         <item name="android:layout_margin">4dp</item>
         <item name="android:textSize">34sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="cornerRadius">16dp</item>
-        <item name="strokeColor">@color/md_theme_dark_outline</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="strokeColor">?attr/colorOutline</item>
         <item name="strokeWidth">2dp</item>
-        <item name="backgroundTint">@color/md_theme_dark_surface</item>
+        <item name="backgroundTint">?attr/colorSurface</item>
     </style>
 
     <!-- Estilo moderno para los botones del tablero - Tema oscuro -->
     <style name="ModernGameButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">100dp</item>
-        <item name="android:layout_margin">6dp</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:textSize">36sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="cornerRadius">20dp</item>
+        <item name="cornerRadius">8dp</item>
         <item name="strokeColor">?attr/colorOutline</item>
-        <item name="strokeWidth">3dp</item>
+        <item name="strokeWidth">2dp</item>
         <item name="backgroundTint">?attr/colorSurface</item>
         <item name="android:background">@drawable/game_button_background</item>
         <item name="rippleColor">?attr/colorPrimary</item>
-        <item name="android:elevation">4dp</item>
+        <item name="android:elevation">2dp</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
 </resources>

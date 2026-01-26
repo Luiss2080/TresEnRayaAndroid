@@ -8,9 +8,9 @@
                 android:angle="45"
                 android:startColor="@color/md_theme_dark_primaryContainer"
                 android:endColor="@color/md_theme_dark_primary" />
-            <corners android:radius="20dp"/>
+            <corners android:radius="8dp"/>
             <stroke
-                android:width="3dp"
+                android:width="2dp"
                 android:color="@color/md_theme_dark_primary"/>
         </shape>
     </item>
@@ -19,9 +19,9 @@
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <solid android:color="@color/md_theme_dark_surfaceVariant"/>
-            <corners android:radius="20dp"/>
+            <corners android:radius="8dp"/>
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/md_theme_dark_outline"/>
         </shape>
     </item>
@@ -34,9 +34,9 @@
                 android:angle="135"
                 android:startColor="@color/md_theme_dark_surface"
                 android:endColor="@color/md_theme_dark_surfaceVariant" />
-            <corners android:radius="20dp"/>
+            <corners android:radius="8dp"/>
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="@color/md_theme_dark_outline"/>
         </shape>
     </item>
